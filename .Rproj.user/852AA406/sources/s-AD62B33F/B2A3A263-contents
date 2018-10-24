@@ -40,6 +40,12 @@ StuDF <- data.frame(
   score=c(80,60,90,70,50)
   )
 StuDF[1,2]
+gsSurvey<-gs_key("1mC9bnxj11NCNoOCw0Vmn4nxERbHtLjeGo9v9C9b2GDE")  #download sheet information as an object
+classSurvey<-gs_read(gsSurvey,ws=1) #access the 1st worksheet
+```
+
+```{r}
+gs_auth(new_user = TRUE)
 ```
 
 ```{r}
@@ -55,11 +61,25 @@ StuDF <- data.frame(
   )
 StuDF[c(T,F,F,F,F),c(F,T,F)]
 StuDF[c(T,F,F,T,F),]
+(StuDF$score >= 80)
+(StuDF$name == "小新")
+StuDF
+which(StuDF$score >= 80)
+which(StuDF$name == "小新")
+StuDF(4,3)
+
 ```
 
 ```{r}
 names(StuDF) 
 colnames(StuDF)
+(classSurvey$性別 == "男")
+
+(classSurvey$本學期學分數 > 20)
+
+(classSurvey$性別 == "男" | 
+    classSurvey$本學期學分數 > 20)
+
 ```
 
 ```{r}

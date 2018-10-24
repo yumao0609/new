@@ -19,3 +19,6 @@
 "1","大白 大雄 小明 小新 胖虎"
 "1","
 "
+"0","gs_auth(new_user = TRUE)"
+"2","Error in gs_auth(new_user = TRUE) : could not find function ""gs_auth""
+"
