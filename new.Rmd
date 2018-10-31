@@ -1,0 +1,82 @@
+---
+title: "ch5"
+author: "林茂廷"
+date: "10/31/2018"
+output: html_document
+---
+
+```{r}
+library(googlesheets)
+gs_auth(new_user = TRUE)
+gsSurvey<-gs_key("1mC9bnxj11NCNoOCw0Vmn4nxERbHtLjeGo9v9C9b2GDE")  #download sheet information as an object
+classSurvey<-gs_read(gsSurvey,ws=1) #access the 1st worksheet
+```
+
+```{r}
+library(stringr)
+aa<-(str_sub(classSurvey$居住地行政區,1,3))
+classSurvey[aa == "台北市",c("姓名")]
+```
+
+```{r}
+cc<-classSurvey[aa == "台北市",c("姓名")]
+class(cc)
+cc$姓名[3]
+```
+
+```{r}
+bb<-c("a","b","c")
+bb[2]
+```
+
+```{r}
+StuDF <- data.frame(
+  StuID=c(1,2,3,4,5),
+  name=c("小明","大雄","胖虎","小新","大白"),
+  score=c(80,60,90,70,50)
+  )
+StuDF 
+```
+
+```{r}
+names(gsSurvey)
+```
+
+```{r}
+gsSurvey$links$type
+```
+
+```{r}
+names(StuDF)[2] <- c("姓名")
+names(StuDF)
+```
+
+```{r}
+levels(student$身高級距)[c(1:3)]<-c("[0,160]")
+```
+
+```{r}
+library(readr)
+student <- read_csv("https://raw.githubusercontent.com/tpemartin/course-107-1-programming-for-data-science/master/data/student.csv")
+library(dplyr)
+library(magrittr)
+student %<>% mutate(
+  身高級距=cut(身高,c(0,150,155,160,165,170,175,180,185,200)))
+```
+```{r}
+levels(student$身高級距)
+```
+
+
+```{r}
+class(classSurvey$學號)
+# 學號轉成character
+classSurvey$學號 <- as.character(classSurvey$學號)
+# 學號取出字串第2-4位 存成 年級
+library(stringr)
+classSurvey$年級 <- str_sub(classSurvey$學號,2,4)
+# 年級 轉 factor
+classSurvey$年級 <- as.factor(classSurvey$年級)
+# 年級進行 generic replacement
+levels(classSurvey$年級) <- c("大四及以上","大三","大二","大一")
+```
