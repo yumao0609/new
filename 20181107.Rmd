@@ -1,0 +1,70 @@
+---
+title: "2018/11/07"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+plot(cars)
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+```{r}
+pk <- c("dplyr", "readr", "lubridate", "magrittr", "stringr", "readxl", "foreign", "ggplot2", "googlesheets")
+install.packages(pk, dependencies = TRUE) 
+install.packages("devtools")
+install.packages("shiny") 
+```
+
+```{r}
+library(stringr)
+library(lubridate)
+民國年月<-c("099/01","099/02","099/03")
+
+# 1
+str_c("1",民國年月,"/01")->民國年月
+
+# 2
+lubridate::ymd(民國年月) -> 民國年月
+
+# 3
+民國年月 + years(911)
+
+民國年月<-c("099/01","099/02","099/03")
+
+library(dplyr)
+# 1
+民國年月 %>% 
+  str_c("1", . ,"/01") %>%
+  ymd %>%
+  { . + years(911) }
+
+library(stringr)
+
+library(dplyr)
+
+library(stringr)
+
+
+mutate(
+  一年級男生=str_replace(一年級男生,",","")
+  一年級女生=str_replace(一年級女生,",","")
+)
+
+mutate(
+  collegeData,
+   一年級女生=as.numeric(一年級女生),
+   一年級男生=as.numeric(一年級男生)
+  ) 
+
+
+```
+
