@@ -1,0 +1,96 @@
+---
+title: "20181212"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+```{r}
+library(readr)
+libraryData <- read_csv("https://raw.githubusercontent.com/tpemartin/github-data/master/library100_102.csv")
+```
+
+
+```{r}
+i<-2
+# 1
+storageLocation_i <- storageLocations[i] 
+# 2
+numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+subsample_i <- libraryData[numericalIndexForSubsample,]
+# 3
+borrowCount_i <- nrow(subsample_i)
+## R Markdown
+
+```
+
+
+```{r}
+# 0
+allBorrowCount <- vector("numeric",18)
+i<-1
+  # 1
+  storageLocation_i <- storageLocations[i] 
+  # 2
+  numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+  subsample_i <- libraryData[numericalIndexForSubsample,]
+  # 3
+  borrowCount_i <- nrow(subsample_i)
+  # 4
+  allBorrowCount[[i]]<-borrowCount_i
+```
+
+```{r}
+
+
+allBorrowCount <- vector("numeric",18)
+for(i in seq_along(storageLocations)){
+  # 1
+  storageLocation_i <- storageLocations[i] 
+  # 2
+  numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+  subsample_i <- libraryData[numericalIndexForSubsample,]
+  # 3
+  borrowCount_i <- nrow(subsample_i)
+  # 4
+  allBorrowCount[[i]]<-borrowCount_i  
+}
+```
+
+
+```{r}
+
+# 0
+allBorrowCount <- vector("numeric",18)
+for(i in c(1:18)){
+  # 1
+  storageLocation_i <- storageLocations[i] 
+  # 2
+  numericalIndexForSubsample<-which(libraryData$書籍館藏地==storageLocation_i)
+  subsample_i <- libraryData[numericalIndexForSubsample,]
+  # 3
+  borrowCount_i <- length(subsample_i$學號)
+  # 4
+  allBorrowCount[[i]]<-borrowCount_i  
+}
+```
+
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
